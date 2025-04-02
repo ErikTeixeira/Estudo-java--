@@ -13,7 +13,8 @@ Um programa só pode consistir em comandos e nada além
 
 Na linguagem de programação Java, um comando não pode existir sozinho. Ele é parte de uma função (em Java, as funções também são chamadas de métodos). Um método é parte de uma classe. Em outras palavras, uma classe é dividida em métodos e métodos são divididos em comandos
 
-- Classe
+
+- ## Classe
     - Geralmente, o código de uma classe consiste no 'nome da classe' e no 'corpo da classe'
     - Será salva no arquivo **Home.java**
     - O corpo da classe é escrito entre chaves
@@ -57,5 +58,48 @@ Na linguagem de programação Java, um comando não pode existir sozinho. Ele é
     }
     ```
 
+### Exibir valor
 
-    
+- System.out.println("Amigo");
+- System.out.print(1);
+
+### Variáveis e tipos de dados
+
+Variáveis são entidades especiais usadas para armazenar dados
+
+
+| Tipo de Dado | Descrição                                                       | Exemplo de Declaração         |
+|--------------|-----------------------------------------------------------------|-------------------------------|
+| **byte**   | Número inteiro de 8 bits, usado para economizar memória.         | `byte idade = 25;`            |
+| **short**  | Número inteiro de 16 bits.                                        | `short saldo = 1500;`         |
+| **int**    | Número inteiro de 32 bits, mais utilizado para operações inteiras. | `int numero = 1000;`          |
+| **long**   | Número inteiro de 64 bits, para valores maiores.                  | `long distancia = 100000L;`   |
+| **float**  | Número de ponto flutuante de 32 bits.                             | `float altura = 1.75f;`        |
+| **double** | Número de ponto flutuante de 64 bits, mais utilizado para cálculos. | `double preco = 19.99;`       |
+| **char**   | Representa um único caractere Unicode de 16 bits.                 | `char inicial = 'A';`         |
+| **boolean**| Representa um valor lógico: `true` ou `false`.                    | `boolean ativo = true;`       |
+| **String** | Cadeia de caracteres (classe, não tipo primitivo).                | `String nome = "João";`       |
+
+> *Observação:* A classe `String` é usada para representar sequências de caracteres, embora não seja um tipo primitivo em Java.
+
+> O f no final do número (1.75f) indica que o valor é do tipo float em Java.  -  `float altura = 1.75f;` 
+Em Java, **os valores decimais** (como 1.75) **são tratados por padrão como double**, que tem 64 bits de precisão. No entanto, como float tem apenas 32 bits, o compilador precisa que você especifique explicitamente que o número deve ser tratado como um float.
+
+- ### Atribuição
+    - i = 3;   ->  Atribui o valor 3 à variável i.	
+        a = 1;   ->   Atribui o valor 1 à variável a.
+        b = a + 1;   ->   Atribui o valor 2 à variável b.
+
+    - String s = "Amigo" + " is the best";   ->   s contém "Amigo is the best"
+    - String s = "";   ->   s contém uma string vazia
+    - int x = 333;
+        String s = "Amigo" + x;   ->   s contém "Amigo333"
+
+**Se você juntar strings e números, o resultado será sempre uma string**
+</br>
+
+- **Não é possível criar duas variáveis com nomes iguais no mesmo método, em métodos diferentes dá**
+- **Nomes de variáveis não podem ter espaços, +, -, etc. É melhor usar apenas letras e números no nome de uma variável**
+- **Java diferencia maiúsculas de minúsculas. int a não é o mesmo que Int a**
+
+
