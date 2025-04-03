@@ -103,3 +103,29 @@ Em Java, **os valores decimais** (como 1.75) **são tratados por padrão como do
 - **Java diferencia maiúsculas de minúsculas. int a não é o mesmo que Int a**
 
 
+### O que são compiladores?
+
+- Um compilador é um programa especial que converte um programa escrito em linguagem de programação em uma série de códigos de máquina
+- Um programa compilado para Windows não vai funcionar em um smartphone Android
+- Um compilador Java não compila todas as classes em um programa de código de máquina. Em vez disso, ele compila cada classe de forma independente e, além disso, não converte em código de máquina, mas em um código intermediário especial (bytecode). O bytecode é compilado em código de máquina quando o programa é iniciado.
+- A JVM vai compilar o bytecode em código de máquina antes de executar o programa
+- Permite que os programas escritos em Java sejam executados em praticamente qualquer dispositivo: computador, smartphone, caixa eletrônico, torradeira
+
+**Em Java, você pode escrever comandos, mas também pode incluir comentários aos comandos no próprio código. O compilador ignora todos os comentários. Quando o programa é executado, todos os comentários são omitidos, coloque no código para explicar o que ele está fazendo**
+
+```java
+    /*
+        Tem dois tipo de comentários. Esse
+    */
+
+   // E esse
+```
+
+# Aprendeu
+- ### Variáveis
+- ### Exibição de texto na tela
+- ### Tipos int e String
+- ### A diferença entre compilar em Java e em outras linguagens
+- ### Inclusão de comentários no código e a razão para fazer isso
+
+
