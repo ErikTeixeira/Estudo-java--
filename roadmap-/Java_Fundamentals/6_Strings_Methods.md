@@ -316,7 +316,7 @@ public class ComparacaoDesempenho {
    - Precisa fazer muitas modificações na string
 
 4. **Para comparar conteúdo de strings, use:**
-   - #### Usar este ao inves do '==' para comparar o contúdo da String, porque o '==' compara o endereço de memoria
+   - #### Usar este ao inves do == para comparar o contúdo da String, porque o == compara o endereço de memoria
    - `.equals()` ao invés de `==` (que compara referências, não conteúdo)
    - `.equalsIgnoreCase()` para comparação sem diferenciar maiúsculas de minúsculas
 
