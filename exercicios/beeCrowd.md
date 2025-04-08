@@ -69,4 +69,37 @@ public class Main {
 
 ---
 
+```java
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+import java.util.Scanner;
+
+
+class Main {
+    public static void main(String[] args) {
+        // 500
+        // 35.0                               saida  -  14.286 km/l
+
+        Scanner readData = new Scanner(System.in);
+
+        int dist = readData.nextInt();
+
+        double combus = readData.nextDouble();
+
+        double result = 0.0;
+
+        try {
+            result = dist / combus;
+            
+        } catch (Exception e) {
+            System.out.println( e.getMessage() );
+        }
+
+
+        System.out.printf("%.3f km/l %n", result);
+        
+    }
+}
+```
 
