@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Projeto Estudo HTML - Quiz" >
         <title>Projeto Estudo HTML - Quiz</title>
+
+        <!-- css ho head, tem o inline tmb -->
+        <!-- <style>
+            h1 {
+                color: red;
+                font-size: 50px;
+            }
+        </style> -->
+
+        <!-- Css em arquivo externo -->
+        <link rel="stylesheet" href="style.css">
+
     </head>
     <body>
 
@@ -13,6 +25,10 @@
         <header>
             <!-- Título H1 até H6  ->  Use para definir o nível de importância -->
             <!-- Só pode um h1 por página -->
+
+                <!-- css inline -->
+            <!-- <h1 style="color: red; font-size: 50px;" >Quiz Iterativo</h1> -->
+
             <h1>Quiz Iterativo</h1>
 
             <p>Testes Seus Conhecimentos!</p>
@@ -37,40 +53,43 @@
                 <p>Você poderá encontrar alguns acrônimos como <abbr title="HyperText Markup Language">HTML</abbr> e <abbr title="Cascading Style Sheets">CSS</abbr>, que são comumente usados em questões relacionadas ao desenvolvimento web</p>
             </section>
 
-            <!-- Pergunta 1 - múltipla escolha -->
+            
             <section>
                 <h2>Qual linguagem é usada para estruturar páginas web?</h2>
 
-                <form>
-                    <!-- type -> tipo do input, value -> valor a ser enviado, id -> para o javascript e o label, name -> linkar com a pergunta que está fazendo -->
-                    <input type="radio" value="Python" id="p1a" name="pergunta1">
-
-                    <!-- Colocar um label(rótulo) para aparecer a parte escrita -->
-                    <!-- for -> esse rótulo é para quem -->
-                    <label for="p1a">Python</label>
-
-                    <input type="radio" value="HTML" id="p1b" name="pergunta1">
-                    <label for="p1b">HTML</label>
-                    <input type="radio" value="Javascript" id="p1c" name="pergunta1">
-                    <label for="p1c">Javascript</label>
-                    <input type="radio" value="Ruby" id="p1d" name="pergunta1">
-                    <label for="p1d">Ruby</label>
+                <form id="form_mult">
+                    <div>
+                        <!-- Pergunta 1 - múltipla escolha -->
+                        <!-- type -> tipo do input, value -> valor a ser enviado, id -> para o javascript e o label, name -> linkar com a pergunta que está fazendo -->
+                        <input type="radio" value="Python" id="p1a" name="pergunta1">
+                        
+                        <!-- Colocar um label(rótulo) para aparecer a parte escrita -->
+                        <!-- for -> esse rótulo é para quem -->
+                        <label for="p1a">Python</label>
+                    </div>
+                    <div>
+                        <input type="radio" value="HTML" id="p1b" name="pergunta1">
+                        <label for="p1b">HTML</label>
+                    </div>
+                    <div>
+                        <input type="radio" value="Javascript" id="p1c" name="pergunta1">
+                        <label for="p1c">Javascript</label>
+                    </div>
+                    <div>
+                        <input type="radio" value="Ruby" id="p1d" name="pergunta1">
+                        <label for="p1d">Ruby</label>
+                    </div>
                 </form>
+                
             </section>
 
             <!-- Pergunta 2 - texto -->
             <section>
-                <!-- Fieldset: agrupa elementos relacionados dentro do formulário -->
-                <fieldset>
-
-                    <!-- Legend: título ou legenda do grupo de elementos -->
-                    <legend>Na URL https://www.google.com o trecho "google.com" é o _______</legend>
+                <h2> Na URL https://www.google.com o trecho "google.com" é o _______</h2>
 
                     <form>
                         <input type="text" name="pergunta2" id="p2" placeholder="Digite sua resposta...">
                     </form>
-
-                </fieldset>
             </section>
 
             <!-- Pergunta 3 - senha -->
@@ -215,24 +234,47 @@
 
             </section>
 
-            <!-- Formulário com dados juntos -->
+            <!-- Formulário com dados juntos - de Feedback -->
+            <section>
+                <h2>Nos dê o seu Feedback</h2>
 
-            1:14:30
+                <form>
+
+                    <!-- Fieldset: agrupa elementos relacionados dentro do formulário -->
+                    <fieldset>
+
+                        <!-- Legend: título ou legenda do grupo de elementos -->
+                        <legend>Informaçoes de contato</legend>
+
+                        <label for="name">Nome: </label>
+                        <input type="text" name="name" id="name">
+                        </br>
+
+                        <label for="email">Email: </label>
+                        <input type="email" name="email" id="email">
+                        </br>
+
+                        <!-- Usa o textarea - para ter um espaço maior -->
+                        <label for="coments">Comentários: </label>
+                        </br>
+                        <textarea type="text" name="coments" id="coments" rows="4" cols="50"> </textarea>
+                        </br>
+
+                        <button onclick="alert('Não funciona enviar')" >Envie o Feedback</button>
+
+                    </fieldset>
+                </form>
+            </section>
 
         </main>
 
-        <footer></footer>
+        <footer>
 
-        
-        <!-- Link -->
-        <div>
-            <a href="https://www.google.com.br" target="_blank" >Ir para o Google, em outra aba</a>
-        </div>
+            <p class="p-footer" >Site do Google <a href="https://www.google.com.br" target="_blank" >aqui!</a> </p>
 
-        <!-- SE DEIXAR UM LINK EMBAIXO DO OUTRO SEM ESTAR EM UMA DIV, ELES FICAM UM DO LADO DO OUTRO NA TELA, E NÃO UM EMBAIXO DO OUTRO -->
-        <a href="https://www.google.com.br" target="_blank" >Ir para o Google, em outra aba</a>
-
-        
+            <p class="p-footer" > &copy; Quiz de Programadores. Todos os direitos reservados</p>
+            <p class="p-footer" > Outros  &lt; &gt; </p>
+        </footer>
 
     </body>
 </html>
