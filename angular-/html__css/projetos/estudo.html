@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Projeto Estudo HTML - Quiz" >
+        <title>Projeto Estudo HTML - Quiz</title>
+    </head>
+    <body>
+
+        <!-- Tags semânticas - header, main, footer, section -->
+        
+        <header>
+            <!-- Título H1 até H6  ->  Use para definir o nível de importância -->
+            <!-- Só pode um h1 por página -->
+            <h1>Quiz Iterativo</h1>
+
+            <p>Testes Seus Conhecimentos!</p>
+        </header>
+        
+        <main>
+            <!-- Introdução -->
+            <section>
+                <h2>Sobre Esse Quiz</h2>
+
+                <!-- Texto em negrito - tem o 'b' e o 'strong' -->
+                <!-- ** Tem significados semânticos diferentes, o strong tem mais que o b ** -->
+
+                <!-- Texto em itálico - tem o 'i' e o 'em' -->
+                <!-- ** Tem significados semânticos diferentes, o em tem mais que o i ** -->
+
+                <!-- </br> para pular linha, mas é para código antigo  -->
+                <!-- <abbr title=""> </abbr> para abrevisção, quando passar o mouse em cima mostra o que e -->
+
+                <p><strong>Este quiz</strong> foi desenvolvido para testar seus conhecimentos em programação, como <em>linguagens de programação</em>, conceitos básicos e mais</p>
+                <p>Você encontrará diferentes tipos de perguntas, incluindo múltipla escolha, texto e perguntas de data. Desafie-se com este quiz! </p>
+                <p>Você poderá encontrar alguns acrônimos como <abbr title="HyperText Markup Language">HTML</abbr> e <abbr title="Cascading Style Sheets">CSS</abbr>, que são comumente usados em questões relacionadas ao desenvolvimento web</p>
+            </section>
+
+            <!-- Pergunta 1 - múltipla escolha -->
+            <section>
+                <h2>Qual linguagem é usada para estruturar páginas web?</h2>
+
+                <form>
+                    <!-- type -> tipo do input, value -> valor a ser enviado, id -> para o javascript e o label, name -> linkar com a pergunta que está fazendo -->
+                    <input type="radio" value="Python" id="p1a" name="pergunta1">
+
+                    <!-- Colocar um label(rótulo) para aparecer a parte escrita -->
+                    <!-- for -> esse rótulo é para quem -->
+                    <label for="p1a">Python</label>
+
+                    <input type="radio" value="HTML" id="p1b" name="pergunta1">
+                    <label for="p1b">HTML</label>
+                    <input type="radio" value="Javascript" id="p1c" name="pergunta1">
+                    <label for="p1c">Javascript</label>
+                    <input type="radio" value="Ruby" id="p1d" name="pergunta1">
+                    <label for="p1d">Ruby</label>
+                </form>
+            </section>
+
+            <!-- Pergunta 2 - texto -->
+            <section>
+                <!-- Fieldset: agrupa elementos relacionados dentro do formulário -->
+                <fieldset>
+
+                    <!-- Legend: título ou legenda do grupo de elementos -->
+                    <legend>Na URL https://www.google.com o trecho "google.com" é o _______</legend>
+
+                    <form>
+                        <input type="text" name="pergunta2" id="p2" placeholder="Digite sua resposta...">
+                    </form>
+
+                </fieldset>
+            </section>
+
+            <!-- Pergunta 3 - senha -->
+            <section>
+                <h2>Escreva um exemplo de senha forte</h2>
+
+                <form>
+                    <input type="password" name="pergunta3" id="p3" placeholder="Digite uma senha">
+                </form>
+            </section>
+
+            <!-- Pergunta 4 - data -->
+            <section>
+                <h2>Em que ano HTML lançou sua primeira versão?</h2>
+
+                <form>
+                    <input type="date" name="pergunta4" id="p4">
+                </form>
+            </section>
+
+            <!-- Pergunta 5 - seleção múltipla - checkbox -->
+            <section>
+                <h2>Quais destas tecnologias são consideradas linguagem de programação?</h2>
+
+                <form>
+                    <input type="checkbox" name="pergunta5" id="p5a" value="Javascript">
+                    <label for="p5a">Javascript</label>
+
+                    <input type="checkbox" name="pergunta5" id="p5b" value="HTML">
+                    <label for="p5b">HTML</label>
+                    <input type="checkbox" name="pergunta5" id="p5c" value="Java">
+                    <label for="p5c">Java</label>
+                    <input type="checkbox" name="pergunta5" id="p5d" value="CSS">
+                    <label for="p5d">CSS</label>
+                </form>
+            </section>
+
+            <!-- Pergunta 6 - upload de arquivo - file -->
+            <section>
+                <h2>Faça o upload de arquivo contendo código HTML</h2>
+
+                <form>
+                    <input type="file" name="pergunta6" id="p6">
+                </form>
+            </section>
+
+            <!-- Pergunta 7 - menu suspenso -->
+            <section>
+                <h2>Selecione o atributo do input que define o seu tipo</h2>
+
+                <!-- Usa o select e option não o input -->
+                <form>
+                    <select name="pergunta7" id="p7">
+                        <option value="id">id</option>
+                        <option value="type">type</option>
+                        <option value="placeholder">placeholder</option>
+                    </select>
+                </form>
+            </section>
+
+            <!-- Pergunta 8 - uso de imagem -->
+            <section>
+                <h2>Qual linguagem de programação é representada pelo logotipo abaixo?</h2>
+
+                <!-- Usa figure para poder colocar o figcaption - legenda na imagem -->
+                <figure>
+                    
+                    <img src="https://static-00.iconduck.com/assets.00/java-icon-256x256-k4ufhihr.png" alt="java icon">
+
+                    <figcaption>Icon linguagem de programção</figcaption>
+                </figure>
+
+                <input type="text" name="pergunta8" id="p8" placeholder="Digite sua resposta">
+            </section>
+
+            <!-- Tabela de pontuação -->
+            <section>
+                <h2>Tabela de Pontuação</h2>
+
+                <table border="1" >
+
+                    <!-- Cabeçalho tabela -->
+                    <thead>
+                        <tr>
+                            <!-- Table head  - Espaço da tabela(valor da coluna) -->
+                            <th>Pontuação</th>
+                            <th>Avaliação</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <!-- Table row  - linha da tabela -->
+                        <tr>
+                            <!-- Table data  - Espaço da tabela(valor da coluna) -->
+                            <td>0-2</td>
+                            <td>Não desista! Cada tentativa é uma oportunidade para você aprender</td>
+                        </tr>
+                        <tr>
+                            <td>3-4</td>
+                            <td>Você ainda precisa melhorar. Que tal estudar mais programação?</td>
+                        </tr>
+                        <tr>
+                            <td>5-7</td>
+                            <td>Bom! Seu conhecimento em programação está satisfatório</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>Perfeito! Você está muito bem</td>
+                        </tr>
+                    </tbody>
+
+                    <!-- Rodapé -->
+                    <tfoot>
+                        <!-- Para ocupar 2 colunas na mesma linha -->
+                        <td colspan="2">Boa sorte na próxima!</td>
+                    </tfoot>
+                </table>
+            </section>
+
+            <!-- Listas de respostas -->
+            <section>
+                <h2>Verifique suas respostas</h2>
+
+                <!-- Listas - ordenadas(ol) | não ordenadas(ul) -->
+
+                <!-- Para esconder as respostas, só conseguir velas quando clicar -->
+                <details>
+                    <!-- Mudar o nome de "details" para o que vc quer -->
+                    <summary>Clique aqui para ver as respostas</summary>
+
+                    <ol>
+                        <li>HTML</li>
+                        <li>Domínio</li>
+                        <li>D246@clok</li>
+                        <li>1991</li>
+                        <li>Javascript, Java</li>
+                        <li>Arquivo deve ter extenção HTML</li>
+                        <li>type</li>
+                        <li>Java</li>
+                    </ol>
+                </details>
+
+            </section>
+
+            <!-- Formulário com dados juntos -->
+
+            1:14:30
+
+        </main>
+
+        <footer></footer>
+
+        
+        <!-- Link -->
+        <div>
+            <a href="https://www.google.com.br" target="_blank" >Ir para o Google, em outra aba</a>
+        </div>
+
+        <!-- SE DEIXAR UM LINK EMBAIXO DO OUTRO SEM ESTAR EM UMA DIV, ELES FICAM UM DO LADO DO OUTRO NA TELA, E NÃO UM EMBAIXO DO OUTRO -->
+        <a href="https://www.google.com.br" target="_blank" >Ir para o Google, em outra aba</a>
+
+        
+
+    </body>
+</html>

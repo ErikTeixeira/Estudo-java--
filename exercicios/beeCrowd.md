@@ -97,9 +97,52 @@ class Main {
         }
 
 
-        System.out.printf("%.3f km/l %n", result);
+        System.out.printf("%.3f km/l%n", result);
         
     }
 }
 ```
 
+---
+
+```java
+import java.util.Scanner;
+
+class Main {
+    public static void main(String[] args) {
+
+        // 1.0 7.0
+        // 5.0 9.0
+
+        Scanner readData = new Scanner(System.in);
+
+        String linha1 = readData.nextLine();
+        String linha2 = readData.nextLine();
+
+        String[] ponto1 = linha1.split(" ");
+        String[] ponto2 = linha2.split(" ");
+
+        double x1 = Double.parseDouble( ponto1[0] );
+        double y1 = Double.parseDouble( ponto1[1] );
+
+        double x2 = Double.parseDouble( ponto2[0] );
+        double y2 = Double.parseDouble( ponto2[1] );
+
+        double subx = x2 - x1;
+        double suby = y2 - y1;
+
+        // Potência
+        double formx = Math.pow( subx, 2 );
+        double formy = Math.pow( suby, 2 );
+
+        double soma = formx + formy;
+
+        // Raiz quadrada
+        double distancia = Math.sqrt( soma );
+
+        // 4.4721
+
+        System.out.printf("%.4f%n", distancia);
+    }
+}
+```
