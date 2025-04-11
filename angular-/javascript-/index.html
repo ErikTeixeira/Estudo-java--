@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dolar para Real</title>
+    <link rel="stylesheet" href="assets/style.css" />
+
+    <!-- pode colocar isso aqui no head com o defer, para funcionar o javascript no arquivo inteiro, ou no final -->
+    <!-- Tem um lado bom de colocar no final, porque o site carrega primeiro o que ta no head antes de tudo, e deixando o javascript aqui ele vai carregar ele antes do conteúdo, deixando mais "lento" o carregamento -->
+    <!-- <script src="./assets/script.js" defer></script> -->
+</head>
+
+<body>
+    <header>
+        <img src="assets/logo.png" alt="Conversor" />
+    </header>
+
+    <main>
+        <section>
+            <span class="cur">US$</span>
+            <input id="usd" type="text" />
+        </section>
+        <section>
+            <span class="cur">R$</span>
+            <input id="brl" type="text" />
+        </section>
+    </main>
+
+    <footer>
+        <p>Feito pela B7Web - vídeo - https://www.youtube.com/watch?v=YqSfq1LiGvw&t=7662s</p>
+    </footer>
+
+    <!-- Acessar o javascript, e funcionar na página inteira -->
+    <script src="./assets/script.js"></script>
+</body>
+
+</html>
