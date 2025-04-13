@@ -17,7 +17,6 @@
 
         <script src="./js/script.js" defer ></script>
     </head>
-        <!-- Usu da weather api  - https://openweathermap.org/api -->
     <body>
 
         <div class="container" >
@@ -35,38 +34,41 @@
                 </div>
             </div>
 
-            <div id="weather-data">
+            <div id="weather-data" class="hide" >
                 <h2> 
                     <i class="fa fa-location-dot"></i>
 
-                    <span id="city"> Maceió </span>
+                    <span id="city">  </span>
 
+                    <!-- uso api de flags -->
                     <img id="country" src="" alt="Bandeira do país">
                 </h2>
 
                 <p id="temperature">
-                    <span>38</span>&deg;C
+                    <span> </span>&deg;C
                 </p>
 
                 <div id="description-container">
 
-                    <p id="description">Nublado</p>
+                    <p id="description"> </p>
 
+                    
+                    <!-- e a api de weather tem icons próprios --> 
                     <img id="weather-icon" src="" alt="Condições do Tempo">
                 </div>
 
                 <div id="datails-container">
 
-                    <p id="umidity">
+                    <p id="humidity">
                         <i class="fa-solid fa-droplet"></i>
 
-                        <span>48%</span>
+                        <span> </span>
                     </p>
 
                     <p id="wind">
                         <i class="fa-solid fa-wind"></i>
 
-                        <span>3km/h </span>
+                        <span>  </span>
                     </p>
                 </div>
             </div>
@@ -74,5 +76,3 @@
         
     </body>
 </html>
-
-19:03
