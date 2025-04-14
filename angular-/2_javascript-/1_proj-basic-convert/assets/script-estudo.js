@@ -141,4 +141,40 @@ brlInput.addEventListener("keyup", () => {
 });
 
 
+// destructuring
+// é uma forma prática e rápida de extrair valores de objetos ou arrays e atribuí-los a variáveis de forma mais limpa e legível.
+
+    // È uma forma prática e rápida de extrair valores de objetos ou arrays e atribuí-los a variáveis de forma mais limpa e legível.
+    const pessoaP = { nome: "Erik", idade: 19 };
+    const nomeP = pessoaP.nome;
+    const idadeP = pessoaP.idade;
+
+    // Com destructuring
+    const { nomep, idadep } = pessoa;
+
+    
+
+const pessoa = {
+    nome: "Erik",
+    idade: 19
+  };
+  
+  // Destructuring
+const { nomeP2, idadeP2 } = pessoaP2;
+  
+console.log(nomeP);  // "Erik"
+console.log(idadeP); // 19
+
+
+
+const numeros = [10, 20, 30];
+
+// Destructuring
+const [a, b, c] = numeros;
+
+console.log(a); // 10
+console.log(b); // 20
+console.log(c); // 30
+
+
 
