@@ -183,4 +183,71 @@ console.log(zeca);
 zeca.showUserName();
 
 
-// 58:44
+// interfaces em classes
+interface IVehicle {
+    brand: string;
+    showBrand(): void;
+}
+
+class Car implements IVehicle {
+    brand;
+    wheels;
+
+    constructor( brand: string, wheels: number ) {
+        this.brand = brand;
+        this.wheels = wheels;
+    }
+
+    showBrand(): void {
+        console.log( this.brand );
+    }
+}
+
+
+// herança
+        // interface funciona, porque já está na classe pai
+class SuperCar extends Car {
+    engine;
+
+    constructor( brand: string, wheels: number, engine: number ) {
+
+        super( brand, wheels );
+        this.engine = engine;
+    }
+}
+
+
+// Decorators  -> são funções que você usa para adicionar comportamento ou metainformação a outras entidades no seu código 
+    // São aplicados usando a sintaxe @ seguida de uma função, que é chamada em tempo de execução com informações sobre a entidade decorada
+        // descomentar o tsconfig  -> experimentalDecorators
+
+
+function BaseParam() {
+
+        // o generic vai receber todos os argumentos da classe e diz que e um array de tipo any, e tipa eles como objeto
+        // traz todos os argumentos e insere novos
+    return function <T extends {new (...args: any ): {} }> ( constructor: T ) {
+        
+        return class extends constructor {
+
+            // quando o user é criado ganha um id, e a data atual de quando foi criado
+            id = Math.random();
+            createdAt = new Date();
+        }
+    }
+}
+
+    // usar o decorator - @
+@BaseParam()
+class Person {
+    name;
+
+    constructor( name: string ) {
+        this.name = name;
+    }
+}
+
+const sam = new Person("Sam");
+console.log(sam);
+
+
