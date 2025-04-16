@@ -146,3 +146,39 @@ class Main {
     }
 }
 ```
+
+---
+
+```java 
+import java.util.Scanner;
+
+
+class Main {
+    public static void main(String[] args) {
+
+        Scanner readData = new Scanner(System.in);
+
+        String entrada = readData.nextLine();
+
+            // entrada 2 3 6 7
+
+        // adicionar cada número em um lugar da lista
+        String[] nums = entrada.split(" ");
+
+        int a = Integer.parseInt( nums[0] );
+        int b = Integer.parseInt( nums[1] );
+        int c = Integer.parseInt( nums[2] );
+        int d = Integer.parseInt( nums[3] );
+
+        int somaCD = c + d;
+        int somaAB = a + b;
+
+        if ( b > c && d > a && somaCD > somaAB && c > 0 && d > 0 && a % 2 == 0 ) {
+
+            System.out.println("Valores aceitos");
+        } else {
+            System.out.println("Valores nao aceitos");
+        }
+    }
+}
+```
