@@ -2,6 +2,12 @@
 // iniciar o arquivo de configuração  ->  tsc --init
 // compilar os arquivos TS  ->  tsc
 // compilação automática  ->  tsc -w   qualquer alteração salva já compila
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 // string, boolean, number, listas ...
 let x = 10; // annotation
 x = 12;
@@ -117,4 +123,48 @@ class User {
 const zeca = new User("Zeca", "Admin", true);
 console.log(zeca);
 zeca.showUserName();
-// 58:44
+class Car {
+    constructor(brand, wheels) {
+        this.brand = brand;
+        this.wheels = wheels;
+    }
+    showBrand() {
+        console.log(this.brand);
+    }
+}
+// herança
+// interface funciona, porque já está na classe pai
+class SuperCar extends Car {
+    constructor(brand, wheels, engine) {
+        super(brand, wheels);
+        this.engine = engine;
+    }
+}
+// Decorators  -> são funções que você usa para adicionar comportamento ou metainformação a outras entidades no seu código 
+// São aplicados usando a sintaxe @ seguida de uma função, que é chamada em tempo de execução com informações sobre a entidade decorada
+// descomentar o tsconfig  -> experimentalDecorators
+function BaseParam() {
+    // o generic vai receber todos os argumentos da classe e diz que e um array de tipo any, e tipa eles como objeto
+    // traz todos os argumentos e insere novos
+    return function (constructor) {
+        return class extends constructor {
+            constructor() {
+                super(...arguments);
+                // quando o user é criado ganha um id, e a data atual de quando foi criado
+                this.id = Math.random();
+                this.createdAt = new Date();
+            }
+        };
+    };
+}
+// usar o decorator - @
+let Person = class Person {
+    constructor(name) {
+        this.name = name;
+    }
+};
+Person = __decorate([
+    BaseParam()
+], Person);
+const sam = new Person("Sam");
+console.log(sam);
