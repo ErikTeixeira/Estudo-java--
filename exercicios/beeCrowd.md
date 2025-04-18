@@ -182,3 +182,9 @@ class Main {
     }
 }
 ```
+
+---
+O printf arredonda valores do tipo x.y5. Por padrão, o System.out.printf("%.1f") faz arredondamento “half‑up”, convertendo 4,85 em 4,9
+---
+
+
