@@ -1,0 +1,27 @@
+<p>home works!</p>
+
+    <!-- pegar da classe - Atributo dinâmico, o aria-label é do angular e não tem no JS, e vc pode criar um seu e colocar no lugar -->
+<!-- <button [attr.aria-label]="idButton" >B</button> -->
+
+    <!-- pegar da classe - para atributos padrões/nativos do html tmb funciona, com [] e {{}} -->
+<!-- <button [id]="idButton" >B</button> -->
+
+    <!-- Para chamar um método da classe, tem colocar o () e não é onClick -->
+    <!-- para pegar os valores do botão que foi clicado, coloca -> $event, se fosse um envio de formulario iria passar as respostas do formulario -->
+<button  (click)="submit( $event )"  >Clique</button>
+        <!-- funciona os outros do html(tem que pesquisar como é no angular) -> mouseover ... -->
+
+
+<!-- if - condicional -->
+
+    <!-- versões antigas -->
+<h2 *ngIf="deveMostrarTitulo" >Versão Antiga do IF</h2>
+
+    <!-- Versão nova -->
+@if( deveMostrarTitulo ) {
+    <h2>Está true</h2>
+} @else if ( name != "Urso" ) {
+    <h2>Não é o urso</h2>
+} @else {
+    <h2>Está false</h2>
+}
