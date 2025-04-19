@@ -15,7 +15,10 @@
 <!-- if - condicional -->
 
     <!-- versões antigas -->
-<h2 *ngIf="deveMostrarTitulo" >Versão Antiga do IF</h2>
+<h2 *ngIf="deveMostrarTitulo; else blocoAlternativo">Está true</h2>
+<ng-template #blocoAlternativo>
+    <h2>Está false</h2>
+</ng-template>
 
     <!-- Versão nova -->
 @if( deveMostrarTitulo ) {
@@ -25,3 +28,19 @@
 } @else {
     <h2>Está false</h2>
 }
+
+
+<!-- Loop -->
+
+<!-- Versão antiga -->
+<p *ngFor=" let item of listItems " > {{item}} </p>
+
+<!-- versão nova -->
+    <!-- track  -> ajuda o angular a renderizar a lista, está falando para ele identificar cada item por ele mesmo -->
+     <!-- se fosse um objeto sendo passado podia identificar pelo id  ->  track item.id -->
+@for( item of listItems; track item ) {
+    <p>{{item}}</p>
+}
+
+
+<!-- <h3> {{propsDeFora}} </h3> -->

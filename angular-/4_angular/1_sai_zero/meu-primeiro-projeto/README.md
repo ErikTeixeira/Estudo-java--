@@ -12,6 +12,10 @@
 - Criar um novo componente pela CLI do angular
     - no cmd -> ``` ng generate component components/home ```, cria um novo componente na pasta component dentro da pasta app com nome de home
 
+- Criar um service
+    - Utilizado para conseguir utilizar um método de um componente no outro
+    - no cmd ``` ng generate service services/enviaForm ```, pode ser assim tmb ``` ng g s services/enviaForm ```
+
 ---
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.8.

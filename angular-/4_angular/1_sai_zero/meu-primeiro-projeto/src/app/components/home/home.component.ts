@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, inject, Input, input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { EnviaFormService } from '../../services/envia-form.service';
 
   // esse decorator é pra dizer que está classe é um componente
 @Component({
@@ -27,13 +28,33 @@ export class HomeComponent {
   name = "Urso";
   idButton = "1234";
   deveMostrarTitulo = false;
+  listItems = [1, 2, 3];
+
+    // faz a instancia do tipo do EnviaFormService  -> deixar private
+  private enviaFormService = inject(EnviaFormService);
+
+    // recebe como nomePassado, mas usa aqui o nome propsDeFora
+  @Input( "nomePassado" ) propsDeFora!: string;
+
+  @Output() emitirValor = new EventEmitter<string>();
   
+    // coloca no envia-form.service.ts  -> para conseguir utilizar em mais de um componente
   // método para chamar no botão, e o parâmetro são os dados qe quando aperta o botão
+  /*
   submit( event: any ) {
     console.log("Submited");
     console.log( event );
   }
+  */
+
+  submit( event: any ) {
+    this.enviaFormService.enviaBackend( event );
+
+    this.emitirValor.emit( this.name );
+  }
+
+  logar( event: string ) {
+    console.log(event);
+  }
 
 }
-
-// 53:54
