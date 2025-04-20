@@ -185,6 +185,45 @@ class Main {
 
 ---
 O printf arredonda valores do tipo x.y5. Por padrão, o System.out.printf("%.1f") faz arredondamento “half‑up”, convertendo 4,85 em 4,9
+
 ---
 
 
+```java
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class Main {
+ 
+    public static void main(String[] args) throws IOException {
+ 
+        Scanner readData = new Scanner(System.in);
+
+        String entrada = readData.nextLine();
+
+        String[] nums = entrada.split(" ");
+
+        int num1 = Integer.parseInt( nums[0] );
+        int num2 = Integer.parseInt( nums[1] );
+        int num3 = Integer.parseInt( nums[2] );
+
+        int[] numsInt = { num1, num2, num3 };
+
+        Arrays.sort( numsInt );
+
+        for ( int num : numsInt ) {
+            System.out.println( num );
+        }
+
+        System.out.println();
+
+        System.out.println(num1);
+        System.out.println(num2);
+        System.out.println(num3);
+
+        readData.close();
+    }
+}
+```
+
+---
