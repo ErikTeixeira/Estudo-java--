@@ -1,4 +1,4 @@
-- Para esse projeto
+- Para o projeto
     - Comando para criar o projeto, ng é como o npm mas para angular ``` no cmd = ng new meu-primeiro-projeto ```
     - Foi escolhido CSS
     - Sem SSR e SSg
@@ -22,4 +22,11 @@
     - Configurações para rodar os testes
 
 
+---
+- Projeto - Angular17  - sem testes unitários
+    - ```npx -p @angular/cli@17 ng new product-store --skip-tests```
+    - Escolheu Sass = SCSS  - para estilizar
+    - Escolheu não = SSR e SSg
+
+    - espera criar o projeto e roda ele  ```npm start```
 
