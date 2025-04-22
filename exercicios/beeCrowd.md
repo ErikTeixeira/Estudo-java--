@@ -227,3 +227,71 @@ public class Main {
 ```
 
 ---
+
+```java
+import java.util.Scanner;
+import java.util.Arrays;
+
+class Main {
+    public static void main(String[] args) {
+
+        Scanner readData = new Scanner(System.in);
+
+        String entrada = readData.nextLine();
+        String[] nums = entrada.split(" ");
+
+        double num1 = Double.parseDouble( nums[0] );
+        double num2 = Double.parseDouble( nums[1] );
+        double num3 = Double.parseDouble( nums[2] );
+
+        double[] list = { num1, num2, num3 };
+
+        Arrays.sort(list);
+
+        // inversão (reverse) in‑place de um array, trocando o primeiro elemento com o último, o segundo com o penúltimo, e assim por diante
+        /*
+        Suponha list = [ a, b, c, d, e ] (comprimento 5).
+
+        Iteração i = 0:
+        tmp = a
+        
+        list[0] = list[4] → [ e, b, c, d, e ]
+        
+        list[4] = tmp → [ e, b, c, d, a ]
+        */
+        for ( int i = 0; i < list.length / 2; i++ ) {
+            double tmp = list[i];
+            list[i] = list[list.length - 1 - i];
+            list[list.length - 1 - i] = tmp;
+        }
+
+                // uso return
+        if ( list[0] >= (list[1]+list[2]) ) {
+            System.out.println("NAO FORMA TRIANGULO");
+            return;
+        }
+
+        if ( Math.pow(list[0], 2) == ( Math.pow(list[1], 2) + Math.pow(list[2], 2) ) ) {
+            System.out.println("TRIANGULO RETANGULO");
+        }
+
+        if ( Math.pow(list[0], 2) > ( Math.pow(list[1], 2) + Math.pow(list[2], 2) ) ) {
+            System.out.println("TRIANGULO OBTUSANGULO");
+        }
+
+        if ( Math.pow(list[0], 2) < ( Math.pow(list[1], 2) + Math.pow(list[2], 2) ) ) {
+            System.out.println("TRIANGULO ACUTANGULO");
+        }
+
+        // Classificação por lados
+        if (list[0] == list[1] && list[1] == list[2]) {
+            System.out.println("TRIANGULO EQUILATERO");
+        } else if (list[0] == list[1] || list[0] == list[2] || list[1] == list[2]) {
+            System.out.println("TRIANGULO ISOSCELES");
+        }
+        
+        readData.close();
+    }
+}
+
+```
