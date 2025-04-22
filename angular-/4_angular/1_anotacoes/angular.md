@@ -23,10 +23,22 @@
 
 
 ---
+
 - Projeto - Angular17  - sem testes unitários
     - ```npx -p @angular/cli@17 ng new product-store --skip-tests```
     - Escolheu Sass = SCSS  - para estilizar
     - Escolheu não = SSR e SSg
 
     - espera criar o projeto e roda ele  ```npm start```
+
+    - Usa a biblioteca **Angular Material**  ```ng add @angular/material```
+        - Facilitar a construção de interfaces de usuário em aplicações Angular, proporcionando componentes pré-construídos que seguem as diretrizes do Material Design do Google
+
+    - Gerar o componente Header - ```npx ng g c shared/components/header``` , g = generate c = componente
+
+    - header
+        - Importar o componente Header no app.componente.ts  -- imports: [RouterOutlet, HeaderComponent],
+        - No app.componente.html  -- apagar o que tinha e colocar ```<app-jeader></app-header>```
+        - header.component.ts  -- importar MatToolbarModule (é um módulo do Angular Material que fornece um componente de barra de ferramentas (toolbar) para a construção de interfaces de usuário)
+        - no header.component.html colocar o conteúdo dele dentro do ``` <mat-toolbar> <p> OI </p> </mat-toolbar> ```
 
