@@ -188,6 +188,7 @@ O printf arredonda valores do tipo x.y5. Por padrão, o System.out.printf("%.1f"
 
 ---
 
+- Arrays.sort  -> ordenar de forma crescente
 
 ```java
 import java.util.Scanner;
@@ -227,6 +228,8 @@ public class Main {
 ```
 
 ---
+
+- Math.pow  -> fazer o elevado a 2
 
 ```java
 import java.util.Scanner;
@@ -294,4 +297,96 @@ class Main {
     }
 }
 
+```
+
+---
+
+- Math.abs  -> deixar positivo
+
+```java
+import java.util.Scanner;
+
+class Main {
+    public static void main(String[] args) {
+
+        Scanner readData = new Scanner(System.in);
+
+        String entrada = readData.nextLine();
+        String[] nums = entrada.split(" ");
+
+        int num1 = Integer.parseInt( nums[0] );
+        int num2 = Integer.parseInt( nums[1] );
+
+        int conta = 0;
+
+        if ( num1 == num2 ) {
+            System.out.println("O JOGO DUROU 24 HORA(S)");
+            return;
+        }
+
+        if ( num1 < num2 ) {
+            conta = num1 - num2;
+            System.out.println("O JOGO DUROU "+ Math.abs(conta) +" HORA(S)");
+        }
+
+        if ( num1 > num2 ) {
+            conta = ( 24 - num1 ) + num2;
+            System.out.println("O JOGO DUROU "+ Math.abs(conta) +" HORA(S)");
+        }
+    }
+}
+```
+
+---
+
+- Para comparar o texto de duas String, você sempre deve usar o método .equals(...) (ou .equalsIgnoreCase(...) se não quiser diferenciar maiúsculas de minúsculas)
+- O operador == quando usado com strings, não compara o conteúdo das strings, mas sim a referência de memória dos objetos
+
+```java
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+ 
+        Scanner readData = new Scanner(System.in);
+
+        String val1 = readData.nextLine();
+        String val2 = readData.nextLine();
+        String val3 = readData.nextLine();
+
+        if ( val1.equals("vertebrado") ) {
+            
+            if ( val2.equals("ave") ) {
+                
+                if ( val3.equals("carnivoro") ) {
+                    System.out.println("aguia");
+                } else {
+                    System.out.println("pomba");
+                }
+            } else {
+                if ( val3.equals("onivoro") ) {
+                    System.out.println("homem");
+                } else {
+                    System.out.println("vaca");
+                }
+            }
+            
+        } else {
+            if ( val2.equals("inseto") ) {
+                if ( val3.equals("hematofago") ) {
+                    System.out.println("pulga");
+                } else {
+                    System.out.println("lagarta");
+                }
+            } else {
+                if ( val3.equals("hematofago") ) {
+                    System.out.println("sanguessuga");
+                } else {
+                    System.out.println("minhoca");
+                }
+            }
+        }
+
+    }
+}
 ```
