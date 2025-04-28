@@ -55,5 +55,28 @@
     - **Instance variables** = declared inside a class but outside methods, accessible by all methods within that class
     - **Static variable** = declared using the static keyword, shared across all instances of the class
 
+### Operators
+- **Arithmetic**
+    - +, -, *, /, %
 
+- **Relational**
+    - ==, !=
+    ``` boolean isEqual = (5 == 5);   // true```
 
+- **Logical**
+    - || (or), && (and)
+
+### Printing Output
+- ```System.out.print()``` and ```System.out.println()```
+    - println() method adds a newline after printing, while print() does not
+
+- ```printf()``` allows formatting of output using format specifiers
+
+| Format Specifier | Description |
+|------------------|-------------|
+| `%d`             | Prints a signed decimal integer. |
+| `%f`             | Prints a floating-point number (decimal notation). |
+| `%c`             | Prints a single character. |
+| `%s`             | Prints a string of characters. |
+| `%%`             | Prints a literal `%` character. |
+| `%.2f`           | Floating-point number with 2 decimals. |

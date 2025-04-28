@@ -24,7 +24,7 @@ let message: string = "Hello";
 console.log(message);
 ```
 
-- ```tsc nomearquivo.ts``` - para compilar o arquivo
+- #### ```tsc nomearquivo.ts``` - para compilar o arquivo
 
 ## Types
 
@@ -51,7 +51,7 @@ console.log(message);
 
 | Type                    | Description                                               | Example                                                                 |
 |-------------------------|-----------------------------------------------------------|-------------------------------------------------------------------------|
-| `T[]` or `Array<T>`     | Array of elements all of type `T`                         | ```ts<br>let nums: number[] = [1, 2, 3];<br>let strs: Array<string> = ["a", "b", "c"];<br>``` |
+| `T[]` or `Array<T>`     | Array of elements all of type `T`                         | ```ts <br> let nums: number[] = [1, 2, 3];  <br> let strs: Array<string> = ["a", "b", "c"]; <br>``` |
 | `[T1, T2, …]`           | Tuple with a fixed sequence of types                      | ```ts<br>let pair: [string, number] = ["Hello", 10];<br>```              |
 | `enum`                  | Enumeration of named constants                            | ```ts<br>enum Color {<br>  Red,<br>  Green = 2,<br>  Blue<br>}<br>```   |
 
