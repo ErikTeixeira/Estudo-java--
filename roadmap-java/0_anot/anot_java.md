@@ -80,3 +80,105 @@
 | `%s`             | Prints a string of characters. |
 | `%%`             | Prints a literal `%` character. |
 | `%.2f`           | Floating-point number with 2 decimals. |
+
+
+### Taking Input with Scanner
+
+- Import = ```import java.util.Scanner;```
+- Create a Scanner object = ```Scanner sc = new Scanner(System.in);```
+- read user input = ```String name = sc.nextLine();``` -- string
+    - ```sc.nextInt();```  -- int
+    - ```sc.nextDouble();```  -- double
+    - ```sc.nextBoolean();```  -- boolean
+
+- **Always close Scanner object at the end to prevent memory leaks**
+    - ```sc.close()```
+
+### Loops
+
+#### Switch Statement -> it's a loop and conditional statement
+
+- Allows a variable to be tested for equality against multiple values
+
+```java
+switch (expression) {
+    case value1:
+        // code to be executed if expression equals value1
+        break;
+    case value2:
+        // code to be executed if expression equals value2
+        break;
+    default:
+        // code to be executed if expression does not match any case
+}
+```
+
+#### For Loop
+
+- Used when the number of iterations is known
+
+```java
+for (initialization; condition; update) {
+    // code to be executed repeatedly
+}
+```
+
+#### While Loop
+
+- Executes a block of code as long as the condition is true
+
+```java
+while (condition) {
+    // code to be executed repeatedly
+}
+```
+
+#### Do-while Loop:  
+
+- Similar to the while loop, but the block of code will be executed at least once before the condition is tested
+
+```java
+do {
+    // code to be executed
+} while (condition);
+```
+
+### Conditional Statements
+
+####  If Statement
+
+- Executes a block of code if the specified condition evaluates to true
+
+```java
+if (condition) {
+    // code to be executed if the condition is true
+}
+```
+
+#### Else Statement
+
+- Specifies a block of code to execute if the condition in the if statement is false
+
+```java
+if (condition) {
+    // code to be executed if the condition is true
+} else {
+    // code to be executed if the condition is false
+}
+```
+
+#### Else if Ladder
+
+- Used to specify a new condition to test if the previous condition was false
+
+```java
+if (condition1) {
+    // code to be executed if condition1 is true
+} else if (condition2) {
+    // code to be executed if condition1 is false and condition2 is true
+} else {
+    // code to be executed if all conditions are false
+}
+```
+
+
