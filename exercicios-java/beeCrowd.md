@@ -390,3 +390,64 @@ public class Main {
     }
 }
 ```
+
+---
+
+- ArrayList
+
+````java
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+import java.util.Scanner;
+
+import java.util.ArrayList;
+
+class Main {
+    public static void main(String[] args) {
+
+        /*
+        Exemplo de Entrada	                          Exemplo de Saída
+        Dia 5
+        08 : 12 : 23
+        Dia 9
+        06 : 13 : 23
+                                                        3 dia(s)
+                                                        22 hora(s)
+                                                        1 minuto(s)
+                                                        0 segundo(s)
+        */
+
+        Scanner readData = new Scanner(System.in);
+
+        String linha1 = readData.nextLine();
+        String linha2 = readData.nextLine();
+        String linha3 = readData.nextLine();
+        String linha4 = readData.nextLine();
+
+        ArrayList<String> listVals = new ArrayList<>();
+
+        // split retorna um array
+        listVals.addAll( Arrays.asList(linha1.split(" ")) );
+        listVals.addAll( Arrays.asList(linha2.split(" ")) );
+
+        listVals.addAll( Arrays.asList(linha3.split(" ")) );
+        listVals.addAll( Arrays.asList(linha4.split(" ")) );
+
+        // remover itens da lista
+        listVals.remove(0);
+        listVals.remove(2);
+        listVals.remove(3);
+        listVals.remove(4);
+        listVals.remove(6);
+        listVals.remove(7);
+        
+        for ( int i = 0; i < listVals.size(); i++ ) {
+            System.out.println( listVals.get(i) );
+            
+        }
+        
+    }
+}
+```
