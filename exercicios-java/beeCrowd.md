@@ -393,7 +393,14 @@ public class Main {
 
 ---
 
-- ArrayList
+- Importação: import java.util.ArrayList; para usar listas dinâmicas.
+- O que é: ArrayList é uma lista de tamanho variável que implementa List.
+- Por que usar: cresce/encolhe automaticamente e oferece métodos como add(), remove() e get().
+- População: addAll(Arrays.asList(linha.split(" "))) para converter e adicionar tokens de entrada.
+- Remoção: remove(index) filtra apenas os números (dia, hora, minuto, segundo).
+- Acesso e conversão: get(i) + Integer.parseInt(...) para obter valores numéricos.
+- Cálculo: converte cada data/hora em segundos totais, subtrai para achar a diferença, e usa while para decompor em dias, horas, minutos e segundos.
+- Benefício: simplifica parsing e manipulação de índices sem gerenciar arrays fixos.
 
 ````java
 import java.util.*;
@@ -442,12 +449,50 @@ class Main {
         listVals.remove(4);
         listVals.remove(6);
         listVals.remove(7);
+
+        int diaInit = Integer.parseInt( listVals.get(0) );
+        int horaInit = Integer.parseInt( listVals.get(1) );
+        int minInit = Integer.parseInt( listVals.get(2) );
+        int segInit = Integer.parseInt( listVals.get(3) );
+
+        int diaFim = Integer.parseInt( listVals.get(4) );
+        int horaFim = Integer.parseInt( listVals.get(5) );
+        int minFim = Integer.parseInt( listVals.get(6) );
+        int segFim = Integer.parseInt( listVals.get(7) );
+
+
+        // total1 = dia1*86400 + h1*3600 + m1*60 + s1
+        int total1 = diaInit*86400 + horaInit*3600 + minInit*60 + segInit;
+        int total2 = diaFim*86400 + horaFim*3600 + minFim*60 + segFim;
         
-        for ( int i = 0; i < listVals.size(); i++ ) {
-            System.out.println( listVals.get(i) );
-            
+        int diferenca = total2 - total1;
+
+        int novoDia = 0;
+        int novoHora = 0;
+        int novoMin = 0;
+        int novoSeg = 0;
+        
+        while ( diferenca >= 86400 ) {
+            diferenca -= 86400;
+            novoDia++;
         }
-        
+
+        while ( diferenca >= 3600 ) {
+            diferenca -= 3600;
+            novoHora++;
+        }
+
+        while ( diferenca >= 60 ) {
+            diferenca -= 60;
+            novoMin++;
+        }
+
+        novoSeg = diferenca;
+
+        System.out.println( novoDia + " dia(s)" );
+        System.out.println( novoHora + " hora(s)" );
+        System.out.println( novoMin + " minuto(s)" );
+        System.out.println( novoSeg + " segundo(s)" );
     }
 }
 ```
