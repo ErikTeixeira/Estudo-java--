@@ -418,7 +418,287 @@ myDog.move(); // Output: Buddy is moving... 🏃
   - Use abstract classes when creating a blueprint with some shared logic
 
 
+## Arrays and Tuples
+
+#### Array
+
+- An array in TypeScript is a collection of elements of the same type. 
+- Unlike JavaScript, TypeScript ensures type safety, meaning all elements must be of the declared type.
+
+```typescript
+let numbers: number[] = [1, 2, 3, 4, 5];
+let names: string[] = ["Alice", "Bob", "Charlie"];
+```
+
+> [!TIP]
+> Use `Array<T>` notation for readability, e.g., `Array<number>` instead of `number[]`.
+
+  “e.g.” is an abbreviation of the Latin phrase exempli gratia, which literally means “for the sake of example.”
+  we use it to introduce one or more examples of what we just mentioned
+
+- Common Array Methods
+  - ``let fruits: string[] = ["Apple", "Banana", "Mango"];``
+  - **push** - ``fruits.push("Orange");  // Adds an element``
+  - **pop** - ``fruits.pop();           // Removes the last element``
+  - **length** - ``console.log(fruits.length); // Outputs: 3``
+
+#### Tuple 
+
+- A tuple is a special type of array with a fixed length and specific types for each position
+
+- **Declaring a Tuple**
+  ```typescript
+  let user: [string, number] = ["Alice", 25]; // Must match types & order
+  ```
+
+- Accessing and Modifying Tuples
+  - ``user[0] = "Bob";  // ✅ Allowed``
+  - ``user[1] = 30;     // ✅ Allowed``
+  - ``// user[1] = "Thirty"; // ❌ Error: Expected number, got string``
+
+> [!TIP]
+> Use tuples when you need a fixed structure with different data types
 
 
+- Tuples are useful for returning multiple values from functions
+  - Function Returning a Tuple
+  ```typescript
+  function getUser(): [string, number] {
+  return ["Alice", 25];
+  }
+
+  const [name, age] = getUser();
+  console.log(`Name: ${name}, Age: ${age}`); // Output: Name: Alice, Age: 25
+  ```
+
+
+#### Tuple vs. Array: Key Difference ⚖️
+
+| Feature      | Array                        | Tuple                                |
+|--------------|------------------------------|--------------------------------------|
+| Length       | Can vary                     | Fixed                                |
+| Type Order   | Same type for all elements   | Specific types for each position     |
+| When to Use  | when storing multiple values of the same type   | when dealing with fixed-length data structures     |
+
+
+### Key Difference from Java Arrays
+- **Java array:** int[] arr = new int[5]; → fixed size, low-level.
+- **TypeScript array:** let arr: number[] = [1, 2, 3]; → dynamic, like ArrayList.
+
+
+## Enums and Type Aliases
+
+#### Enum
+
+- An enum in TypeScript is a way to define a set of named constants. 
+- Enums make your code more readable and help avoid using magic numbers or strings.
+
+```typescript
+enum Direction {
+  Up,    // 0
+  Down,  // 1
+  Left,  // 2
+  Right  // 3
+}
+
+let move: Direction = Direction.Up;
+console.log(move); // Output: 0
+```
+
+> By default, enum values start at 0 and increment automatically
+
+- You can also manually set values in an enum
+
+```typescript
+enum Status {
+  Success = 200,
+  NotFound = 404,
+  ServerError = 500
+}
+
+console.log(Status.NotFound); // Output: 404
+```
+
+#### Type Alias
+
+- Allows you to create a custom name for a type, making your code more readable and reusable
+
+```typescript
+type User = {
+  name: string;
+  age: number;
+};
+
+  // the type of const is user
+const person: User = { name: "Alice", age: 25 };
+```
+
+> [!TIP]
+> Use type aliases to make complex types easier to read and reuse!
+
+- **Type Aliases with Union Types**
+  - You can use type aliases with union types to define multiple possible values.
+
+  ```typescript
+  type Status = "success" | "error" | "loading";
+
+  let requestStatus: Status = "success"; // ✅ Allowed
+  // requestStatus = "failed"; // ❌ Error: "failed" is not part of the type
+  ```
+
+
+| Feature        | Enum 🏆        | Type Alias 🏷️ |
+|----------------|----------------|----------------|
+| Stores values? | ✅ Yes         | ❌ No         |
+| Works with numbers & strings? | ✅ Yes | ✅ Yes |
+| Better for? | Named constants | Complex object structures |
+
+- ##### Combining Enums & Type Aliases
+
+  ```typescript
+  enum Role {
+  Admin,
+  User,
+  Guest
+  }
+
+  type Person = {
+    name: string;
+    role: Role;
+  };
+
+  const newUser: Person = { name: "Bob", role: Role.Admin };
+  console.log(newUser.role); // Output: 0
+  ```
+
+- ##### 💡 When to Use What?
+  - ✔️ Use Enums for defining fixed sets of named constants.
+  - ✔️ Use Type Aliases to create custom types for objects and unions. 
+
+
+## Generics in TypeScript
+
+- Generics in TypeScript allow you to create reusable, type-safe code. They let you write functions, classes, or interfaces that work with any type while maintaining type safety
+
+- ##### Why Use Generics?
+  - ✅ Provides flexibility without losing type safety.
+  - ✅ Avoids redundant code for different types.
+  - ✅ Helps catch type errors at compile time.
+
+```typescript
+function identity<T>(value: T): T {
+  return value;
+}
+
+console.log(identity<string>("Hello")); // Output: Hello
+console.log(identity<number>(42));      // Output: 42
+```
+
+> `<T>` is a placeholder for a type that is determined when calling the function
+ 
+>> **`<T>` is a common name for a generic type, but you can use any letter or word**
+
+- #### Generics are commonly used with functions and arrays for flexible yet type-safe operations
+
+- Generic Function with Arrays
+
+  ```typescript
+  function getFirstElement<T>(arr: T[]): T {
+  return arr[0];
+  }
+
+  console.log(getFirstElement<string>(["Apple", "Banana"])); // Output: Apple
+  console.log(getFirstElement<number>([10, 20, 30])); // Output: 10
+  ```
+
+> This function works with any array type while keeping type safety
+
+>> **You can use multiple generics like `<T, U>`**
+
+- Generic Interface
+
+```Typescript
+interface Box<T> {
+  content: T;
+}
+
+const stringBox: Box<string> = { content: "TypeScript" };
+const numberBox: Box<number> = { content: 100 };
+```
+> The Box<T> interface can now hold any type
+
+- Generic Class
+
+```Typescript
+class Storage<T> {
+  private data: T;
+
+  constructor(value: T) {
+    this.data = value;
+  }
+
+  getData(): T {
+    return this.data;
+  }
+}
+
+const numStorage = new Storage<number>(50);
+console.log(numStorage.getData()); // Output: 50
+```
+
+- #### 🔑 Key Takeaways :
+  - ✔️ Generics allow type flexibility without losing type safety.
+  - ✔️ Functions, interfaces, and classes can all use generics.
+  - ✔️ Use <T> as a placeholder for any type.
+
+
+
+## Utility Types and Type Manipulation
+
+- Utility types in TypeScript help modify existing types, making code more flexible and reusable. They allow you to create new types by transforming existing ones.
+
+- #### Common Utility Types
+  
+**1. Partial**<T> – Makes all properties optional
+  - Partial<T> takes a type with required properties and makes them optional
+
+  ```Typescript
+  type User = { name: string; age: number };
+  let user: Partial<User> = { name: "Alice" }; // ✅ age is optional
+  ```
+
+**2. Required<T>** – Makes all properties required
+  - Required<T> takes a type with optional properties and makes them required
+
+  The “?” you see in the Required example is there to show that the properties were optional before applying Required<T>. After applying it, the properties lose the “?” and become required
+
+  ```Typescript
+  type User = { name?: string; age?: number };
+
+  // ✅ Providing all properties satisfies the type
+  let fullUser: Required<User> = { name: "Bob", age: 30 };
+
+  // ❌ Omitting any property causes an error
+  let missingProp: Required<User> = { name: "Bob" };
+  // Error: Property 'age' is missing in type '{ name: string; }' but required in type 'Required<User>'
+  ```
+
+**3. Readonly<T>** – Prevents modifications to properties
+
+  ```Typescript
+  type User = { name: string };
+  const user: Readonly<User> = { name: "Charlie" };
+  // user.name = "David"; // ❌ Error: Cannot assign to 'name' because it is a read-only property.
+  ```
+
+**4. Pick<T, K>** – Selects specific properties from a type
+
+  ```Typescript
+  type User = { name: string; age: number; email: string };
+  type UserSummary = Pick<User, "name" | "email">;   // Only 'name' and 'email' are kept
+  ```
+
+
+> Use utility types when you need variations of an existing type
 
 

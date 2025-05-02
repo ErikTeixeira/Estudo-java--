@@ -182,3 +182,13 @@ if (condition1) {
 ```
 
 
+### Introduction to Control Flow
+
+1. Control flow is the order in which individual statements, instructions, or function calls are executed in a program.
+2. Java provides multiple control flow statements, including conditional statements, loops, and switch statements to control the flow of execution.
+
+
+- Types of Control Flow Statements:
+    1. Conditional Statements (e.g., if, else if, else)
+    2. Looping Statements (e.g., for, while, do-while)
+    3. Switch Statements
