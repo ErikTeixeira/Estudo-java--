@@ -55,3 +55,19 @@
         - na raiz do projeto, criar o arquivo -> db.json
         - instalar o json server no projeto -> npm i -D json-server
         - rodar o json server local -> npx json-server db.json
+
+        - colocar no app.config.ts -> provideHttpClient() no providers: []
+        - criar um proxy para mapear diferentes hosts por diferentes barramentos como o '/products' levar para o json server
+            - na raiz do projeto criar um arquivo -> proxy.config.json
+            - configurar com o target = url do server, e pathRewrite = remover o /api da requisição
+            - ir no angular.json -> serve -> embaixo de configurations -> criar option
+                ```
+                "options": {
+                    "proxyConfig": "proxy.config.json"
+                },
+                ```
+            - reiniciar o projeto angular
+
+
+        - fazer um código simples no ListComponent no list.component.ts para carregar o json, use -> httpClient = inject( HttpClient );
+        - e arruamr a renderização do html no list.component.html

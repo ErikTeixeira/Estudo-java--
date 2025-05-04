@@ -234,10 +234,10 @@ const nums = s.split('').map(ch => {
 
 ---
 
-- array.push()
+- **array.push()**
   - Adiciona um ou mais elementos ao final de um array
 
-- array.forEach()
+- **array.forEach()**
   - Itera sobre cada elemento de um array, executando uma função callback
   - Não é obrigatório declarar e usar todos os parâmetros
   ```typescript
@@ -280,3 +280,45 @@ function merge(nums1: number[], m: number, nums2: number[], n: number): void {
     }
 };
 ```
+
+---
+
+- **Number vs. BigInt**
+  - Number em JavaScript/TypeScript armazena valores em ponto-flutuante de 64 bits, com precisão segura até cerca de \(9 \times 10^{15}\)
+  - Para inteiros maiores (ou que ultrapassem Number.MAX_SAFE_INTEGER), usar BigInt, que lida com precisão arbitrária em valores inteiros sem perder dígitos.
+- **Uso de join() em arrays**
+  - ``array.join(separador)`` concatena todos os elementos do array numa string, intercalando o ``separador`` entre eles
+  ```
+  [1,2,3].join(',')  // "1,2,3"
+  [1,2,3].join('')   // "123"
+  ```
+- **Uso de split() -- só funciona em string**
+  - ``string.split(separador)`` divide a string em um array de substrings, cortando sempre que encontra o separador
+  ```
+  "1234".split('')      // ['1','2','3','4']
+  ```
+
+```typescript
+function plusOne(digits: number[]): number[] {
+
+    // Use join('') para concatenar sem separador, 
+    // senão ele coloca virgula e fica 1,2,3 tudo junto
+    let nums = digits.join('');
+
+    let num = Number(nums);
+
+    num++;
+
+    // To split a number into individual digits in TypeScript, it can be converted to a string,
+    // then split into an array of string digits, and finally mapped back to an array of numbers
+    const numberString = num.toString();
+    
+    return numberString.split('').map(Number);
+};
+
+console.log( plusOne( [9,9,9] ) );
+```
+
+
+
+
