@@ -58,7 +58,7 @@
 
         - na raiz do projeto, criar o arquivo -> db.json
         - instalar o json server no projeto -> npm i -D json-server
-        - rodar o json server local -> npx json-server db.json
+        - **rodar o json server local -> ```npx json-server db.json```**
 
         - colocar no app.config.ts -> provideHttpClient() no providers: []
             - para conseguir usar requisição http pelo angular
@@ -124,4 +124,106 @@
                         import('./features/create/create.component').then(m => m.CreateComponent),
                 }
             ```
+
+        - **Formulário para cadastrar produto com Reactive Forms**
+            - no create.component.ts 
+                ```typescript
+                // retorna null
+                form = new FormGroup({
+                    title: new FormControl<string>( '', { 
+                    nonNullable: true,
+                    validators: Validators.required,
+                    }),
+                });
+                ```
+
+            - importar o ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule no create.component.ts
+            
+            - no create.component.html, criar um form, estilos no create.component.scss, usando a class form-controller
+
+                ```html
+                <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-container" >
+                    <!-- formControlName -> vincular um campo no formulario, consegue capturar o form control do form group -->
+
+                        <!-- é certo colocar a ação no form e não no botão do form -->
+                    <mat-form-field (ngSubmit)="">
+                        <mat-label>Input</mat-label>
+                        <input matInput type="text" formControlName="title" placeholder="Título" >
+                    </mat-form-field>
+
+                    <button type="submit" mat-raised-button >Salvar</button>
+                </form>
+                ```
+
+                - método de salvar no create.component.ts, bom começar com 'on' quando é usado em aventos assim, que chama um método
+                    - onSubmit() {}
+
+                - ir no products.service.ts
+                    - criar o post
+                    - não precisa enviar o id
+                    - usar o **Omit do typescript** na interface de Product para não ter o id
+                        - cria uma interface, **usou type**, que é mais flexível porem não tem algumas funcionalidades de interface -> 
+                        ```typescript
+                        import { Product } from "./product.interface";
+                            // da para omitir mais de um  -> 'id' | 'title'
+                        export type ProductPayload = Omit<Product, 'id'>;
+                        ```
+                    ```typescript
+                    post( payload: ProductPayload) {
+                        return this.httpClient.post('/api/products', payload);
+                    }
+                    ```
+                
+                - antes de arrumar o onSubmit, precisa injetar o service no create.component.ts
+                    - productService = inject(ProductService);
+                    ```typescript
+                        // quando apertar em salvar, vai chamar o post do service,
+                        // e ele vai receber um objeto de tipo payload
+                    onSubmit() {
+                        this.productService.post({
+                        title: this.form.controls.title.value
+                        })
+                        .subscribe((response) => {
+                        console.log(response);
+                        });
+                    }
+                    ```
+                - Mostrando feedback ao usuário  -> usa o snackbar do angular material
+                    - ir no create.component.ts , e injetar esse service
+                        ``matSnackBar = inject(MatSnackBar);``
+                        ```typescript
+                        onSubmit() {
+                            this.productService.post({
+                            title: this.form.controls.title.value
+                            })
+                            .subscribe((response) => {
+                            this.matSnackBar.open('Produto criado com sucesso!', 'Ok', {
+                                duration: 3000,
+                                horizontalPosition: 'right',
+                                verticalPosition: 'top',
+                            });
+                            });
+                        }
+                        ```
+                - Rotiar de volta para a página inicial
+                    - injetar o router no create.component.ts
+                        ``router = inject(router);``
+                    - this.router.navigate ou this.router.navigateByUrl
+                        ```typescript
+                        onSubmit() {
+                            this.productService.post({
+                            title: this.form.controls.title.value
+                            })
+                            .subscribe((response) => {
+                            this.matSnackBar.open('Produto criado com sucesso!', 'Ok', {
+                                duration: 3000,
+                                horizontalPosition: 'right',
+                                verticalPosition: 'top',
+                            });
+                                    // o path ''  -> é similar a /
+                            this.router.navigateByUrl('/');
+                            });
+                        }
+                        ```
+
 

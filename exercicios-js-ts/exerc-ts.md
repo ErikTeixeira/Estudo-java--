@@ -319,6 +319,48 @@ function plusOne(digits: number[]): number[] {
 console.log( plusOne( [9,9,9] ) );
 ```
 
+---
+
+- #### Tópicos sobre `find`, `indexOf` e `lastIndexOf`
+
+  * **`Array.prototype.find(callback)`**
+
+    * Percorre o array elemento a elemento.
+    * Retorna o **primeiro** elemento para o qual `callback(elemento)` for `true`.
+    * Se nenhum elemento satisfizer a condição, retorna `undefined`.
+    * Útil quando você quer **apenas um** resultado e pode interromper a busca assim que o encontra.
+
+  * **`Array.prototype.indexOf(value)`**
+
+    * Retorna o índice da **primeira** ocorrência de `value` no array.
+    * Se não encontrar, retorna `-1`.
+    * Tem complexidade O(n) em arrays grandes.
+
+  * **`Array.prototype.lastIndexOf(value)`**
+
+    * Retorna o índice da **última** ocorrência de `value` no array.
+    * Se não encontrar, retorna `-1`.
+    * Também O(n), mas faz a busca de trás para frente.
+
+  * **Uso combinado (`indexOf === lastIndexOf`)**
+
+    * Quando `indexOf(item) === lastIndexOf(item)`, significa que só há **uma** ocorrência de `item` no array.
+    * É uma forma simples de encontrar elementos “únicos” sem estruturas auxiliares, porém com custo quadrático O(n²) no pior caso.
 
 
+```typescript
+// Versão usando indexOf + lastIndexOf + find
+function singleNumber(nums: number[]): number {
+  
+  // find percorre o array e retorna o primeiro elemento que satisfaz a condição
+  return nums.find(item =>
+    // indexOf(item) retorna o índice da primeira ocorrência de item em nums
+    // lastIndexOf(item) retorna o índice da última ocorrência de item em nums
+    // se forem iguais, significa que item só aparece uma vez
+    nums.indexOf(item) === nums.lastIndexOf(item)
+  )!; // o "!" informa ao TS que o resultado não será undefined
+}
+
+console.log(singleNumber([2, 1, 2])); // imprime 1
+```
 
