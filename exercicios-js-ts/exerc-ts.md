@@ -363,4 +363,3 @@ function singleNumber(nums: number[]): number {
 
 console.log(singleNumber([2, 1, 2])); // imprime 1
 ```
-
