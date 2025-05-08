@@ -91,6 +91,19 @@
         - Usa o angular Material -> procurar por card -> colocar no list.component.html -> para funcionar tem que importar no list.component.ts o MatCardModule e o MatButtonModule
 
     - #### Component para reutilizar o card do produto
+        - **card component -> é um dumb component**
+            - É um componente apresentacional, focado somente em exibir dados e disparar eventos. Ele não contém lógica de negócio nem sabe de onde os dados vêm — ele apenas recebe inputs e emite outputs
+                - ✅ Recebe dados via @Input()
+                - ✅ Emite eventos via @Output()
+                - ❌ Não faz requisições HTTP ou manipula serviços diretamente
+                - ❌ Não tem lógica de negócio complexa
+            
+            - Vantagens dos Dumb Components:
+                - Fáceis de testar
+                - Reutilizáveis
+                - Mais simples de manter
+                - Seguem o princípio da separação de responsabilidades
+
         - Ao inves de colocar o card do material dentro do @for, cria um component de card para ser listado
         - ``npx ng g c features/list/components/cards``  -> não fica no shared porque só vai ser usado em um lugar
         - coloca no html o código do card, e no arquivo .ts coloca os import do Material que estavam no list.component.ts nele
@@ -188,7 +201,7 @@
                         });
                     }
                     ```
-                - Mostrando feedback ao usuário  -> usa o snackbar do angular material
+                - ##### Mostrando feedback ao usuário  -> usa o snackbar do angular material
                     - ir no create.component.ts , e injetar esse service
                         ``matSnackBar = inject(MatSnackBar);``
                         ```typescript
@@ -225,5 +238,109 @@
                             });
                         }
                         ```
+                
+                - Padronizar as configurações do Mat Snackbar
+                    - no app.config.ts no providers ->
+                        ```typescript
+                        {
+                            provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
+                            useValue: {
+                                duration: 3000,
+                                horizontalPosition: 'right',
+                                verticalPosition: 'top',
+                            }as MatSnackBarConfig, // coloca isso para tipar como MatSnackBarCOnfig
+                        }
+                        ```
+                        - Ou cria uma const de SNACK_BAR_CONFIG no app.config.ts e coloca ela no providers
+
+                    - no onSubmit() {} fica assim
+                        ```typescript
+                        onSubmit() {
+                            this.productService.post({
+                            title: this.form.controls.title.value
+                            })
+                            .subscribe((response) => {
+                            this.matSnackBar.open('Produto criado com sucesso!', 'Ok');
+
+                            this.router.navigateByUrl('/');
+                            });
+                        }
+                        ```
+
+    - #### Aplicação é iniciada no main.ts, e o ``bootstrapApplication(AppComponent, appConfig)``, passa o AppComponent e o appConfig
+        - o **appConfig** é um **arquivo que permite configurar a aplicação**, especialmente para as **versões mais recentes do Angular**, como a partir da versão 17
+        - app.config.ts substitui o tradicional app.module.ts e a app.component.ts para configurações de nível global
+
+    - #### Componente para editar produto
+        - criar component ``npx ng g c features/edit``
+            - nos components do edit, primeiro foi copiado quase tudo do create e colado no edit, tanto coisas do arquivo de ts e html
+            - fica mais simples fazer isso, do que um arquivo com uma lógica if para quando ser create, ou edit ...
+        - adicionar o rotiamento no app.routes.ts -> está incompleto por enquanto
+            ```typescript
+            {
+            path: 'edit-product',
+            loadComponent: () =>
+                import('./features/edit/edit.component')
+                .then(m => m.EditComponent),
+            },
+            ```
+        - no card.component.ts, acrescentar o @Output() edit
+            ``@Output() edit = new EventEmitter();``
+        - no card.component.html, colocar no button a chamada dele
+            ``<button mat-button (click)="edit.emit()" >Editar</button>``
+        - no list.component.ts
+            - injetar o router -> ``router = inject(Router);``
+            - criar o método onEdit
+                ```typescript
+                onEdit(product: Product) {
+                    this.router.navigateByUrl('/edit-product');
+                }
+                ```
+            - no list.component.html, colocar o edit no ``<app-cards>``
+                ``<app-cards [product]="product" (edit)="onEdit()" ></app-cards>``
+        
+        - no product.service.ts, criar o getId e o put
+            ```typescript
+            getId(id: string) {
+                return this.httpClient.get<Product>(`/api/products/${id}`);
+            }
+            ```
+            ```typescript
+            put( id: string, payload: ProductPayload) {
+                return this.httpClient.put(`/api/products/${id}`, payload);
+            }
+            ```
+            - no app.routes.ts, colocar para receber o id no path
+                ``path: 'edit-product/:id'``
+                - resolve -> já pega os dados antes mesmo do component edit ser inicializado
+                    ```typescript
+                    {
+                        path: 'edit-product/:id',
+                        resolve: {
+                            product: (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+                                const productService = inject(ProductsService);
+
+                                return productService.get(route.paramMap.get('id') as string);
+                            }
+                        },
+                        loadComponent: () =>
+                            import('./features/edit/edit.component').then(m => m.EditComponent),
+                    },
+                    ```
+            
+            - pegar o produto no edit.component.ts
+                ``product: Product = inject(ActivatedRoute).snapshot.data['product'];``
+                - arrumar o form e o onSubmit
+                    - colocando no parâmetro o ``this.product.title`` e o ``this.product.id``
+                
+                - mudar o o list.component.html para passar um produto no onEdit
+                    ``<app-cards [product]="product" (edit)="onEdit(product)" ></app-cards>``
+                - mudar o list.component.ts, o onEdit
+                    ```typescript
+                    onEdit( product: Product ) {
+                        this.router.navigate(['/edit-product', product.id]);
+                    }
+                    ```
 
 
+            
