@@ -342,5 +342,33 @@
                     }
                     ```
 
+    - Componente para reutilizar o fomulário de produto
+        - ``npx ng g c shared/components/form``
+            - no form.component.ts, colocar o form que tava no edit ts, e modificar
+                ```typescript
+                product = input<Product | null>(null);
+
+                form!: FormGroup;
+
+                ngOnInit(): void {
+                    this.form = new FormGroup({
+                        title: new FormControl<string>( this.product()?.title ?? '' , { 
+                        nonNullable: true,
+                        validators: Validators.required,
+                        }),
+                    });
+                }
+                ```
+            - criar um méto no form.component.ts de onSubmit e colocar um @Output que envia um produto
+                ``@Output() submit = new EventEmitter<Product>();``
+                ```typescript
+                onSubmit() {
+                    const product = this.form.value as Product;
+
+                    this.submit.emit(product);
+                }
+                ```
+            - colocar os importsdo edit ts e o que html do edit no do form
+
 
             
