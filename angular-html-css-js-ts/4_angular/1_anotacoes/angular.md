@@ -24,6 +24,9 @@
 
 ---
 
+## Playlist  --  https://www.youtube.com/playlist?list=PLXEUJjGpEX7zwdFSAzIPiSf9p0tOeI1Yu
+## Github projeto da Code Dimension  --  https://github.com/code-dimension/mini-curso-angular-17
+
 - ### Projeto - Angular17  - sem testes unitários
     - ```npx -p @angular/cli@17 ng new product-store --skip-tests```
     - Escolheu Sass = SCSS  - para estilizar
@@ -359,16 +362,45 @@
                     });
                 }
                 ```
-            - criar um méto no form.component.ts de onSubmit e colocar um @Output que envia um produto
-                ``@Output() submit = new EventEmitter<Product>();``
+            - criar um métdoo no form.component.ts de onSubmit e colocar um @Output que envia um produto, com nome done porque submit é uma palavra reservada
+                ``@Output() done = new EventEmitter<Product>();``
                 ```typescript
                 onSubmit() {
                     const product = this.form.value as Product;
 
-                    this.submit.emit(product);
+                    this.done.emit(product);
                 }
                 ```
-            - colocar os importsdo edit ts e o que html do edit no do form
+            - colocar os imports do edit ts do do form e o que tem no html do edit no do form
+    - Reutilizar formulário de produto
+        - tirar os imports e o form do edit.component.ts, e limpar o html do edit e colocar o app-form passando o produto
+            ``<app-form [product]="product" (done)="onSubmit($event)" ></app-form>``
+        - mudar o onSubmit, passando um product
+            ```typescript
+            onSubmit( product: Product ) {
+                this.productService.put( this.product.id, product )
+                .subscribe...
+            ```
+        - Fazer isso no component de create também
+
+    - #### Componente para deletar produto
+        - colocar no card html, o chamado do onDelete
+            ``<button mat-button (click)="onDelete()">Deletar</button>``
+        - colocar um output para o delete no card ts
+            ``@Output() delete = new EventEmitter();``
+        - colocar o onDelete()
+            ```typescript
+            onDelete() {
+                this.delete.emit();
+            }
+            ```
+        - fazer o app-card do component de list html escutar o delete
+            ``(delete)="onDelete(product)"``
+        - fazer um onDelete no list ts, que chama uma modal para perguntar se tem certeza
+        - fazer um service ``ConfirmationDialogComponent`` **para o modal/dialog**, o html dele é com o materail do angular
 
 
+---
+    
+- Assisti até o vídeo 25
             
