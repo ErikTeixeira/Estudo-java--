@@ -109,8 +109,3 @@ No github se cria Issues para dividir as responsabilidades, e dizer o que cada u
             ```
 
 
-
-tempo que parou -- 2:13:15
-
-
-
