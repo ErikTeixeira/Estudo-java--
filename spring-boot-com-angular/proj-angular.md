@@ -86,3 +86,5 @@
                 marca!: string;
             }
             ```
+
+- https://www.youtube.com/watch?v=bZzy57Jo3mk&list=PLtII2Mw41oA0LLJgLVeyRWO5IPUtdfRth&index=17&t=867s
