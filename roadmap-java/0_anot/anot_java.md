@@ -96,23 +96,6 @@
 
 ### Loops
 
-#### Switch Statement -> it's a loop and conditional statement
-
-- Allows a variable to be tested for equality against multiple values
-
-```java
-switch (expression) {
-    case value1:
-        // code to be executed if expression equals value1
-        break;
-    case value2:
-        // code to be executed if expression equals value2
-        break;
-    default:
-        // code to be executed if expression does not match any case
-}
-```
-
 #### For Loop
 
 - Used when the number of iterations is known
@@ -192,3 +175,17 @@ if (condition1) {
     1. Conditional Statements (e.g., if, else if, else)
     2. Looping Statements (e.g., for, while, do-while)
     3. Switch Statements
+        - Allows a variable to be tested for equality against multiple values
+
+        ```java
+        switch (expression) {
+            case value1:
+                // code to be executed if expression equals value1
+                break;
+            case value2:
+                // code to be executed if expression equals value2
+                break;
+            default:
+                // code to be executed if expression does not match any case
+        }
+        ```
