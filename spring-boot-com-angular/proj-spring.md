@@ -15,7 +15,7 @@
     - Lombok
     - Data JPA
     - MySql
-
+    - Spring Security -- colocou depois -- está em baixo dos testes a explicação
 
 - ### Pastas projeto
     - entity        -> classes do banco de dados
@@ -624,3 +624,143 @@
             - ### Gerar o jacoco no projeto -> ``mvn clean test``
                 - Vai **aparecer na pasta tarjet** uma **pasta site** e entrando nas pastas e só rodar o **index**
                 - PAra atualizar o jacoco, tem que fazer o ``mvn clean test`` de novo
+
+---
+
+- ### DTOs (Data Transfer Objects)
+
+    - DTOs isolam sua API das entidades JPA.
+    - Mapper centraliza regras de conversão.
+    - Service recebe/retorna DTOs.
+    - Controller expõe somente DTOs.
+
+
+---
+
+- ### Validação de Entrada (Bean Validation)
+    - Um mecanismo padronizado de validação de beans (objetos), baseado em anotações
+
+    - Coloca anotações de restrição nos campos da sua classe (por exemplo, ``@NotNull, @Size, @Email``) e, ao receber o objeto (via @RequestBody, por exemplo), adiciona @Valid no parâmetro do método do controller. O Spring invoca automaticamente o validator e, se houver violações, lança uma MethodArgumentNotValidException, que normalmente resulta em um HTTP 400 (Bad Request)
+
+    - Bean Validation (JSR 380) com Hibernate Validator: anotações (@NotNull, @Size, @Email, etc.) + @Valid para ativar validação automática no Spring MVC.
+        - @**NotNUll, @Size -> usar no entity ou DTOs**
+
+    - @Valid: aciona a validação de um bean; pode ser complementado por BindingResult ou @Validated.
+
+    - @Transactional: gerencia transações de banco – início, commit e rollback automático.
+
+---
+
+- ### Documentação de API com Swagger/OpenAPI
+
+    - **Documentação automatizada:** Gera uma documentação legível da API com base no código.
+    - **Interface interativa (Swagger UI):** Permite testar os endpoints diretamente no navegador.
+    - **Facilita a comunicação:** Ajuda desenvolvedores front-end, back-end e QA a entenderem a API.
+    - **Padrão aberto (OpenAPI):** Facilita integração com outras ferramentas (Postman, serviços externos, geração de SDKs etc).
+    - **Atualização automática:** Sempre que os controladores mudam, a documentação reflete essas mudanças.
+
+    - Dependência: 
+        ```
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+        ```
+
+    - Acessar a interface Swagger
+        Após iniciar a aplicação, acesse:
+            ``http://localhost:8080/swagger-ui.html``
+    
+
+---
+
+- ### Containerização com Docker
+
+    - Criar um arquivo na raiz do projeto com nome ``Dockerfile``
+    - **Dockerfile**
+        ```
+        FROM eclipse-temurin:21-jdk
+        WORKDIR /app
+        COPY target/*.jar app.jar
+        EXPOSE 8080
+        ENTRYPOINT ["java", "-jar", "app.jar"]
+        ```
+
+    - ``mvn clean package``
+    - ``docker-compose up --build``
+
+    - Ou se não tiver um docker que roda tudo ->
+        - rodar no terminal -> ``docker build -t proj-back-javasb .`` (proj-back-javasb -> vc escolhe quer dar)
+        - rodar o container -> ``docker run -p 8080:8080 proj-back-javasb``
+
+    - **Acessar a aplicação:**
+        - Pode acessar o swagger -> http://localhost:8080/swagger-ui.html
+        - E pode acesssar os endpoints
+
+---
+
+- ### Spring Security
+    - Framework de segurança para nossa api contido no ecossistema spring
+    - **Não adiante criar regras de login somente no front se o back ficar desprotegido**
+    
+    - **Dependência**
+        - Só de incluir no pow, todos os endpoints ficam bloqueados automaticamente
+        ```
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        ```
+    - Implementa classes de configuração
+    - ##### Erros
+        - **ERRO HTTP 401** -- exception unauthorized -- não está autenticado
+        - **ERRO HTTP 403** -- exception forbiden -- está autenticado mas não autorizado
+
+- ### JWT
+    - **JSON WEB TOKEN (JWT)** é um método para autenticação entre sistemas
+        - **TOKEN -> um hash, uma string que é um resultado de criptografia**, só da para decodificar por completo se vc tiver a chave secreta que foi ussada para assinar o TOKEN
+        - Usuário faz login com usuário e senha no front
+        - O spring security intercepta, verifica se este usuário existe e, se sim, cria e retorna um token de liberação de acesso
+        - O token fica guardado  no LOCALSTORAGE do cliente(navegador)
+            - Ele é mandado no HEADER de toda requisição(exceto logar)
+
+    - **Dependência** -> jjwt-api, jjwt-impl e jjwt-jackson são as dependências necessárias para criar, assinar e validar JWTs
+        ```
+           <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-api</artifactId>
+                <version>0.11.5</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-impl</artifactId>
+                <version>0.11.5</version>
+                <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-jackson</artifactId>
+                <version>0.11.5</version>
+                <scope>runtime</scope>
+            </dependency>
+        ```
+
+    - **A partir da autenticação**, **toda** e **qualquer requisição HTTP** precisa **conter o TOKEN JWT  NO HEADER** da requisição HTTP
+        - Para cada endpoint que o front tentar requisitar, o token deverá ser enviado na requisição (HEADER AUTHORIZATION)
+        - O spring security irá interceptar a requisição, verificar se tem token válido e se este token foi gerado por este back-end
+
+    - **Request HTTP** -> requisição do front ou do postman
+        - **URL:** endpoint da api
+        - **Verbo:** GET, PUT, DELETE, POST
+        - **Header:** *TOKEN JWT*
+        - **Body:** JSON do dado a ser enviado
+    
+    - Possuem:
+        - **Header ->** tem a informação que não usa, o tipo do primeiro algoritmo usado para embaralhar e o tipo de token
+        - **Payload ->** configura no back-end no arquivo que gera tokens, que informações quer junto com o token( nome, email... ), que pode decodificar e utilizar em algo no projeto 
+        - **Verify signature ->** verificar a chave secreta
+
+    - Implementa classes de configuração no back-end e no front-end
+
+
