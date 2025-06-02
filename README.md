@@ -76,3 +76,5 @@ ng serve
 - **Spring Framework**: Controllers, Services, Repositories, Injeção de Dependência
 - **Persistência de Dados**: JPA/Hibernate, MongoDB
 - **Angular**: Componentes, Serviços, Roteamento, Forms, HTTP Client
+
+- .
