@@ -77,3 +77,5 @@ ng serve
 - **Persistência de Dados**: JPA/Hibernate, MongoDB
 - **Angular**: Componentes, Serviços, Roteamento, Forms, HTTP Client
 
+
+---
